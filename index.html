@@ -201,18 +201,20 @@
   <section class="screen" id="s4">
     <span class="big-emoji">🍽️</span>
     <h1>그래! 이 날 뭐 땡길 것 같아?</h1>
-    <div class="sub">먹고 싶은 거 하나 골라봐</div>
+    <div class="sub">점심 하나, 저녁 하나 골라봐</div>
     <div class="menu-label">☀️ 점심</div>
-    <div class="menu-grid">
+    <div class="menu-grid" data-g="lunch">
       <button class="menu-item" data-m="🐷 서울돈가스 (신사)">🐷 서울돈가스<small>신사</small></button>
       <button class="menu-item" data-m="🐷 해키돈가스 (망원)">🐷 해키돈가스<small>망원</small></button>
     </div>
     <div class="menu-label">🌙 저녁</div>
-    <div class="menu-grid">
+    <div class="menu-grid" data-g="dinner">
       <button class="menu-item" data-m="🥓 금돼지식당">🥓 금돼지식당<small>삼겹살 · 목살</small></button>
       <button class="menu-item" data-m="🍲 이복희해장">🍲 이복희해장<small>차돌수육</small></button>
       <button class="menu-item" data-m="🐟 중앙참치">🐟 중앙참치</button>
       <button class="menu-item" data-m="🐽 돝돝">🐽 돝돝</button>
+    </div>
+    <div class="menu-grid">
       <button class="menu-item menu-any" data-m="🤍 뭐든 좋아">🤍 난 뭐든 괜찮아 😊</button>
     </div>
     <div class="spacer"></div>
@@ -230,7 +232,8 @@
       <div class="p-en">FOR JAEWON · OUR DATE</div>
       <div class="p-row"><span class="k">📅 날짜</span><span class="v" id="pDate">-</span></div>
       <div class="p-row"><span class="k">⏰ 시간</span><span class="v" id="pTime">-</span></div>
-      <div class="p-row"><span class="k">🍽️ 메뉴</span><span class="v" id="pMenu">-</span></div>
+      <div class="p-row"><span class="k">☀️ 점심</span><span class="v" id="pLunch">-</span></div>
+      <div class="p-row"><span class="k">🌙 저녁</span><span class="v" id="pDinner">-</span></div>
       <div class="p-foot">💕 우리 이 날 만나자 💕</div>
     </div>
     <button class="btn" onclick="saveCard()">♥️ 이미지 저장해서 답장 보내기 ♥️</button>
@@ -294,7 +297,7 @@
   yesBtn.addEventListener('click',()=>go(2));
 
   // ---------- date/time ----------
-  const state={date:'',time:'',menu:''};
+  const state={date:'',time:'',lunch:'',dinner:''};
   const days=['일','월','화','수','목','금','토'];
 
   // default: next Saturday, 6pm
@@ -327,18 +330,33 @@
   }
 
   // ---------- menu ----------
+  // 점심/저녁 각각 하나씩, "뭐든 괜찮아"는 둘 다 채움
+  const anyBtn=document.querySelector('.menu-any');
   document.querySelectorAll('.menu-item').forEach(b=>{
     b.addEventListener('click',()=>{
-      document.querySelectorAll('.menu-item').forEach(x=>x.classList.remove('sel'));
+      const g=b.parentElement.dataset.g;
+      if(g){
+        anyBtn.classList.remove('sel');
+        if(state.lunch===anyBtn.dataset.m)state.lunch='';
+        if(state.dinner===anyBtn.dataset.m)state.dinner='';
+        b.parentElement.querySelectorAll('.menu-item').forEach(x=>x.classList.remove('sel'));
+        state[g]=b.dataset.m;
+      }else{
+        document.querySelectorAll('.menu-item').forEach(x=>x.classList.remove('sel'));
+        state.lunch=state.dinner=b.dataset.m;
+      }
       b.classList.add('sel');
-      state.menu=b.dataset.m;
+      document.getElementById('s4hint').textContent='';
     });
   });
   function pickMenu(){
-    if(!state.menu){document.getElementById('s4hint').textContent='하나만 골라줘~ 😊';return;}
+    if(!state.lunch&&!state.dinner){document.getElementById('s4hint').textContent='점심, 저녁 하나씩 골라줘~ 😊';return;}
+    if(!state.lunch){document.getElementById('s4hint').textContent='점심도 골라줘~ ☀️';return;}
+    if(!state.dinner){document.getElementById('s4hint').textContent='저녁도 골라줘~ 🌙';return;}
     document.getElementById('pDate').textContent=state.date;
     document.getElementById('pTime').textContent=state.time;
-    document.getElementById('pMenu').textContent=state.menu;
+    document.getElementById('pLunch').textContent=state.lunch;
+    document.getElementById('pDinner').textContent=state.dinner;
     go(5);
   }
 
@@ -357,7 +375,7 @@
 
   // ---------- restart ----------
   function restart(){
-    state.date=state.time=state.menu='';
+    state.date=state.time=state.lunch=state.dinner='';
     dodges=0;
     noBtn.classList.remove('loose');
     noBtn.style.left='';noBtn.style.right='';noBtn.style.top='64px';
