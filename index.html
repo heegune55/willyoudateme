@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>재원아, 나랑 데이트 할래? 🌸</title>
+<title>재원아, 나랑 데이트 할래? 🍁</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
   :root{
-    --bg1:#ffd9b0;   /* peach */
-    --bg2:#ffb2c8;   /* coral pink */
-    --bg3:#bd97e6;   /* soft lavender */
+    --bg1:#ffe0a3;   /* golden ginkgo */
+    --bg2:#f59a5b;   /* maple orange */
+    --bg3:#c8473b;   /* crimson maple */
     --card:#fffdfb;
     --rose:#ec6178;      /* warm rose-coral */
     --rose-deep:#d94e6b;
@@ -36,7 +36,7 @@
     position:relative;
   }
 
-  /* floating sparkles */
+  /* falling leaves */
   .petal{position:fixed;top:-40px;font-size:20px;opacity:.55;pointer-events:none;
     animation:drift linear infinite;z-index:0;}
   @keyframes drift{
@@ -52,7 +52,7 @@
     background:var(--card);
     border-radius:32px;
     padding:38px 26px 34px;
-    box-shadow:0 24px 60px -18px rgba(138,92,196,.4),
+    box-shadow:0 24px 60px -18px rgba(140,45,30,.45),
                0 0 0 1px rgba(255,255,255,.7) inset;
     text-align:center;
     overflow:hidden;
@@ -158,7 +158,7 @@
 <!-- Screen 1 : the question -->
 <div class="stage">
   <section class="screen active" id="s1">
-    <span class="big-emoji">🌸</span>
+    <span class="big-emoji">🍁</span>
     <div class="to-line">💌 재원이에게 보내는 데이트 신청</div>
     <h1>재원아,<br>나랑 데이트 할래?</h1>
     <div class="sub">용기 내서 물어보는 거야...💗</div>
@@ -235,7 +235,7 @@
 
 <script>
   // ---------- floating petals ----------
-  const petals=['🌸','💗','🌷','💕','🩷'];
+  const petals=['🍁','🍂','🍁','💗','🍂'];
   for(let i=0;i<14;i++){
     const p=document.createElement('div');
     p.className='petal';
