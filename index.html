@@ -128,6 +128,9 @@
   .menu-item:hover{border-color:var(--rose-soft);transform:translateY(-2px);}
   .menu-item.sel{background:var(--rose);color:#fff;border-color:var(--rose);box-shadow:0 8px 18px -8px rgba(217,78,107,.6);}
   .menu-any{grid-column:1/3;}
+  .menu-item small{display:block;font-family:'Gowun Dodum';font-weight:400;font-size:13px;margin-top:5px;color:var(--ink-soft);}
+  .menu-item.sel small{color:#ffe6ec;}
+  .menu-label{font-family:'Dongle';font-weight:700;font-size:24px;color:var(--plum);text-align:left;margin:14px 2px 0;}
 
   .spacer{height:14px;}
 
@@ -199,15 +202,17 @@
     <span class="big-emoji">🍽️</span>
     <h1>그래! 이 날 뭐 땡길 것 같아?</h1>
     <div class="sub">먹고 싶은 거 하나 골라봐</div>
-    <div class="menu-grid" id="menuGrid">
-      <button class="menu-item" data-m="🍕 피자">🍕 피자</button>
-      <button class="menu-item" data-m="🍣 스시">🍣 스시</button>
-      <button class="menu-item" data-m="🍔 햄버거">🍔 햄버거</button>
-      <button class="menu-item" data-m="🍱 돈까스">🍱 돈까스</button>
-      <button class="menu-item" data-m="🍚 덮밥">🍚 덮밥</button>
-      <button class="menu-item" data-m="🍜 라멘">🍜 라멘</button>
-      <button class="menu-item" data-m="🍲 국밥">🍲 국밥</button>
-      <button class="menu-item" data-m="🌶️ 마라탕">🌶️ 마라탕</button>
+    <div class="menu-label">☀️ 점심</div>
+    <div class="menu-grid">
+      <button class="menu-item" data-m="🐷 서울돈가스 (신사)">🐷 서울돈가스<small>신사</small></button>
+      <button class="menu-item" data-m="🐷 해키돈가스 (망원)">🐷 해키돈가스<small>망원</small></button>
+    </div>
+    <div class="menu-label">🌙 저녁</div>
+    <div class="menu-grid">
+      <button class="menu-item" data-m="🥓 금돼지식당">🥓 금돼지식당<small>삼겹살 · 목살</small></button>
+      <button class="menu-item" data-m="🍲 이복희해장">🍲 이복희해장<small>차돌수육</small></button>
+      <button class="menu-item" data-m="🐟 중앙참치">🐟 중앙참치</button>
+      <button class="menu-item" data-m="🐽 돝돝">🐽 돝돝</button>
       <button class="menu-item menu-any" data-m="🤍 뭐든 좋아">🤍 난 뭐든 괜찮아 😊</button>
     </div>
     <div class="spacer"></div>
