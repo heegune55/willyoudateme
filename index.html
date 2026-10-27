@@ -37,7 +37,7 @@
   }
 
   /* falling leaves */
-  .petal{position:fixed;top:-40px;font-size:20px;opacity:.55;pointer-events:none;
+  .petal{position:fixed;top:-40px;font-size:20px;opacity:.8;pointer-events:none;
     animation:drift linear infinite;z-index:0;}
   @keyframes drift{
     0%{transform:translateY(-40px) rotate(0deg) scale(.7);opacity:0;}
@@ -235,15 +235,15 @@
 
 <script>
   // ---------- floating petals ----------
-  const petals=['🍁','🍂','🍁','💗','🍂'];
-  for(let i=0;i<14;i++){
+  const petals=['🍁','🍂','🍁','🍁','🍂','🍁','💗'];
+  for(let i=0;i<40;i++){
     const p=document.createElement('div');
     p.className='petal';
     p.textContent=petals[i%petals.length];
     p.style.left=Math.random()*100+'vw';
-    p.style.fontSize=(14+Math.random()*16)+'px';
+    p.style.fontSize=(16+Math.random()*20)+'px';
     p.style.animationDuration=(7+Math.random()*7)+'s';
-    p.style.animationDelay=(-Math.random()*10)+'s';
+    p.style.animationDelay=(-Math.random()*14)+'s';
     document.body.appendChild(p);
   }
 
